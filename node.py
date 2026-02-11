@@ -12,10 +12,10 @@ class Node:
     def f(self):
         return self.g + self.h
     
-    def less_than(self, other):
+    def __lt__(self, other):
         return self.f() < other.f()
-    
-    def equal_to(self, other):
+
+    def __eq__(self, other):
         if not isinstance(other,Node):
             return NotImplemented
         return self.state == other.state
