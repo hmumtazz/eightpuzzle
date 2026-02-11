@@ -1,6 +1,6 @@
 """Problem class for the n-puzzle"""
 
-from config import SIZE, BLANK, MOVES
+from config import SIZE, BLANK, MOVES,DIRECTIONS
 
 class Problm:
 
@@ -42,3 +42,20 @@ class Problm:
                     return (r,c)
                 
         assert False, "sorry, no blank tile found!"
+
+    def successors(self,state):
+        results = []
+        blank_r, blank_c = self.find_blank(state)
+
+        for action in self.moves:
+            dr, dc = DIRECTIONS[action]
+            new_r = blank_r + dr
+            new_c = blank_c + dc
+
+            if 0 <= new_r < self.size and 0 <= new_c < self.size:
+                new_state = [row[:] for row in state]
+                new_state[blank_r][blank_c] = new_state[new_r][new_c]
+                new_state[new_r][new_c] = BLANK
+                results.append((action, new_state))
+
+        return results

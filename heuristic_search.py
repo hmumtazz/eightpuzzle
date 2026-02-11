@@ -6,7 +6,7 @@ def h_zero(state,goal,size):
 
 def h_mispalced(state, goal,size):
 
-    coutn = 0
+    count = 0
 
     for r in range(size):
         for c in range(size):
