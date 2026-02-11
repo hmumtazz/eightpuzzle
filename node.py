@@ -20,7 +20,7 @@ class Node:
             return NotImplemented
         return self.state == other.state
     
-    def hash (self):
+    def __hash__ (self):
         return hash(self.key())
     
     def key(self):

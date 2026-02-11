@@ -11,5 +11,3 @@ DIRECTIONS = {
     "left" : (0, -1),
     'right': (0, 1),
 }
-
-ROW_NAMES = ("first", "second", "third", "fourth", "fifth" )
