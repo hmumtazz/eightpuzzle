@@ -32,9 +32,20 @@ def print_summary(result, expanded, max_q):
         print(f"Max queue size : {max_q}")
         print_solution(result)
 
+TEST_CASES = [
+    [[1, 2, 3], [4, 5, 6], [7, 8, 0]],
+    [[1, 2, 3], [4, 5, 6], [0, 7, 8]],
+    [[1, 2, 3], [5, 0, 6], [4, 7, 8]],
+    [[1, 3, 6], [5, 0, 2], [4, 7, 8]],
+    [[1, 3, 6], [5, 0, 7], [4, 8, 2]],
+    [[1, 6, 7], [5, 0, 3], [4, 8, 2]],
+    [[7, 1, 2], [4, 8, 5], [6, 3, 0]],
+    [[0, 7, 2], [4, 6, 1], [3, 5, 8]],
+]
+
 def read_puzzle():
     print("Welcome to the n-Puzzle ssolver!")
-    print('Type "1" to use a default , or "2" to enter your own.\n')
+    print('Type "1" to use a default , "2" to enter your own, or "3" to pick a test case.\n')
     choice = input("Enter choice: ").strip()
 
     if choice == "2":
@@ -47,6 +58,17 @@ def read_puzzle():
             assert len(row) == size, f"Expected {size} numbers"
             puzzle.append(row)
         return puzzle, size
+    elif choice == "3":
+        print("\nTest cases:")
+        for i, tc in enumerate(TEST_CASES, 1):
+            flat = "/".join("".join(str(t) for t in row) for row in tc)
+            print(f"  {i}. {flat}")
+        pick = int(input(f"\nPick a test case (1-{len(TEST_CASES)}): ").strip())
+        puzzle = TEST_CASES[pick - 1]
+        print(f"\nUsing test case {pick}:")
+        print_state(puzzle)
+        print()
+        return puzzle, 3
     else:
         puzzle = [
             [1, 2, 3],
